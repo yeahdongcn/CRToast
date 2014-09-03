@@ -577,7 +577,9 @@ NSArray * CRToastGenericRecognizersMake(id target, CRToastInteractionResponder *
 
 - (UIView*)statusBarView {
     UIView *statusBarView = [[UIView alloc] initWithFrame:self.statusBarViewAnimationFrame1];
-    [statusBarView addSubview:CRStatusBarSnapShotView(self.displayUnderStatusBar)];
+    if ([statusBarView respondsToSelector:@selector(snapshotViewAfterScreenUpdates:)]) {
+    	[statusBarView addSubview:CRStatusBarSnapShotView(self.displayUnderStatusBar)];
+    }
     statusBarView.clipsToBounds = YES;
     return statusBarView;
 }
