@@ -1174,7 +1174,9 @@ UIStatusBarStyle statusBarStyle;
 
 - (void)statusBarStyle:(UIStatusBarStyle)newStatusBarStyle {
     statusBarStyle = newStatusBarStyle;
-    [self setNeedsStatusBarAppearanceUpdate];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+    	[self setNeedsStatusBarAppearanceUpdate];
+    }
 }
 
 - (BOOL)shouldAutorotate {
